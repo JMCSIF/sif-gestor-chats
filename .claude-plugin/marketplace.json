@@ -1,0 +1,5 @@
+{
+  "name": "sif-mods",
+  "owner": { "name": "JMCSIF" },
+  "plugins": [{ "name": "sif-gestor-chats", "source": "./" }]
+}
