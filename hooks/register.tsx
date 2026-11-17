@@ -103,7 +103,7 @@ export const register: Register = on => {
 
     // Recupera los chats guardados y da de alta este si es nuevo.
     const id = await $.session.id()
-    const ahora = await $.clock.now()
+    const ahora = Date.now()
     const guardados = (await $.store.get('chats')) as ChatRegistro[] | undefined
     let lista: ChatRegistro[] = Array.isArray(guardados) ? guardados : []
     let actual = lista.find(c => c.id === id)
@@ -148,7 +148,7 @@ export const register: Register = on => {
   })
 
   on('session.end', async ($, e, next) => {
-    const ahora = await $.clock.now()
+    const ahora = Date.now()
     await tocarChat($, c => ({ ...c, fin: ahora, motivo: c.motivo ?? e.reason }))
     return next(e)
   })
@@ -177,7 +177,7 @@ export const register: Register = on => {
     const titulo = await read($, nombre)
     const lista = await read($, chats)
     const id = await $.session.id()
-    const ahora = await $.clock.now()
+    const ahora = Date.now()
 
     const usado = m?.usado ?? null
     const est = estadoDe(usado)
